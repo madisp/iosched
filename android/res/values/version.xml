@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- needed to copy this over, otherwise we wouldn't be able to ref it in the AndroidManifest.xml -->
+    <integer name="google_play_services_version">6171000</integer>
+</resources>

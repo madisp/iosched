@@ -1,0 +1,40 @@
+<ivy-module version="2.0">
+  <info organisation="com.madisp.shootout" module="iosched" revision="0.1" />
+
+  <dependencies>
+
+    <dependency org="com.google.code.gson" name="gson" rev="2.+">
+      <artifact name="gson" ext="jar" />
+    </dependency>
+    <dependency org="com.google.api-client" name="google-api-client" rev="1.+">
+      <artifact name="google-api-client" ext="jar" />
+    </dependency>
+    <dependency org="com.google.api-client" name="google-api-client-android" rev="1.17.+">
+      <artifact name="google-api-client-android" ext="jar" />
+    </dependency>
+    <dependency org="com.google.apis" name="google-api-services-plus" rev="+">
+      <artifact name="google-api-services-plus" ext="jar" />
+    </dependency>
+    <dependency org="com.github.japgolly.android" name="svg-android" rev="2.0.6">
+      <artifact name="svg-android" ext="jar" />
+    </dependency>
+    <!-- commented out since it is an aar -->
+    <!-- dependency org="com.google.maps.android" name="android-maps-utils" rev="0.3+">
+      <artifact name="android-maps-utils" ext="jar" />
+      <exclude org="com.google.android.gms" />
+    </dependency -->
+    <dependency org="com.google.http-client" name="google-http-client-gson" rev="1.+">
+      <artifact name="google-http-client-gson" ext="jar" />
+    </dependency>
+    <dependency org="com.google.apis" name="google-api-services-drive" rev="+">
+      <artifact name="google-api-services-drive" ext="jar" />
+    </dependency>
+
+    <exclude org="junit" module="junit" />
+    <exclude org="xpp3" module="xpp3" />
+    <exclude org="commons-codec" module="commons-codec" />
+    <exclude org="org.apache.httpcomponents" module="httpclient" />
+    <exclude org="com.google.android" module="android" />
+    <exclude org="com.google.android.google-play-services" />
+  </dependencies>
+</ivy-module>
