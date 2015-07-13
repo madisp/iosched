@@ -1,0 +1,6 @@
+[alias]
+    app = //apps/iosched:app
+[java]
+    src_roots = /src/
+[android]
+    target = android-21

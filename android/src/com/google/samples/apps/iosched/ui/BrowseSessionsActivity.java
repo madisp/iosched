@@ -501,18 +501,18 @@ public class BrowseSessionsActivity extends BaseActivity implements SessionsFrag
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_search:
-                /* [ANALYTICS:EVENT]
-                 * TRIGGER:   Click the search button on the Explore screen.
-                 * CATEGORY:  'Explore'
-                 * ACTION:    'launchsearch'
-                 * LABEL:     (none)
-                 * [/ANALYTICS]
-                 */
-                AnalyticsManager.sendEvent(SCREEN_LABEL, "launchsearch", "");
-                startActivity(new Intent(this, SearchActivity.class));
-                return true;
+        final int id = item.getItemId();
+        if (id == R.id.menu_search) {
+            /* [ANALYTICS:EVENT]
+             * TRIGGER:   Click the search button on the Explore screen.
+             * CATEGORY:  'Explore'
+             * ACTION:    'launchsearch'
+             * LABEL:     (none)
+             * [/ANALYTICS]
+             */
+            AnalyticsManager.sendEvent(SCREEN_LABEL, "launchsearch", "");
+            startActivity(new Intent(this, SearchActivity.class));
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

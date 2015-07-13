@@ -748,38 +748,34 @@ public abstract class BaseActivity extends ActionBarActivity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id) {
-            case R.id.menu_about:
-                HelpUtils.showAbout(this);
-                return true;
-
-            case R.id.menu_wifi:
-                WiFiUtils.showWiFiDialog(this);
-                return true;
-
-            case R.id.menu_i_o_hunt:
-                launchIoHunt();
-                return true;
-
-            case R.id.menu_debug:
-                if (BuildConfig.DEBUG) {
-                    startActivity(new Intent(this, DebugActionRunnerActivity.class));
-                }
-                return true;
-
-            case R.id.menu_refresh:
-                requestDataRefresh();
-                break;
-
-            case R.id.menu_io_extended:
-                startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(Config.IO_EXTENDED_LINK)));
-                break;
-
-            case R.id.menu_map:
-                startActivity(new Intent(this, UIUtils.getMapActivityClass(this)));
-                finish();
-                break;
+        if (id == R.id.menu_about) {
+            HelpUtils.showAbout(this);
+            return true;
+        }
+        else if (id == R.id.menu_wifi) {
+            WiFiUtils.showWiFiDialog(this);
+            return true;
+        }
+        else if (id == R.id.menu_i_o_hunt) {
+            launchIoHunt();
+            return true;
+        }
+        else if (id == R.id.menu_debug) {
+            if (BuildConfig.DEBUG) {
+                startActivity(new Intent(this, DebugActionRunnerActivity.class));
+            }
+            return true;
+        }
+        else if (id == R.id.menu_refresh) {
+            requestDataRefresh();
+        }
+        else if (id == R.id.menu_io_extended) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(Config.IO_EXTENDED_LINK)));
+        }
+        else if (id == R.id.menu_map) {
+            startActivity(new Intent(this, UIUtils.getMapActivityClass(this)));
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

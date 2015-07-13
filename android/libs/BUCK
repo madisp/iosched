@@ -1,0 +1,52 @@
+import re
+
+jar_deps = []
+for jarfile in glob(['*.jar']):
+  name = 'jars__' + re.sub(r'^.*/([^/]+)\.jar$', r'\1', jarfile)
+  jar_deps.append(':' + name)
+  prebuilt_jar(
+    name = name,
+    binary_jar = jarfile,
+  )
+
+android_library(
+  name = 'all-jars',
+  exported_deps = jar_deps,
+  visibility = [ 'PUBLIC' ],
+)
+
+android_prebuilt_aar(
+  name = 'android-maps-utils',
+  aar = 'android-maps-utils-0.3.4.aar',
+  visibility = [ 'PUBLIC' ],
+)
+
+android_prebuilt_aar(
+  name = 'play-services',
+  aar = 'play-services-6.1.71.aar',
+  visibility = [ 'PUBLIC' ],
+)
+
+android_prebuilt_aar(
+  name = 'support-v4',
+  aar = 'support-v4-21.0.3.aar',
+  visibility = [ 'PUBLIC' ],
+)
+
+android_prebuilt_aar(
+  name = 'support-v13',
+  aar = 'support-v13-21.0.3.aar',
+  visibility = [ 'PUBLIC' ],
+)
+
+android_prebuilt_aar(
+  name = 'appcompat-v7',
+  aar = 'appcompat-v7-21.0.3.aar',
+  visibility = [ 'PUBLIC' ],
+)
+
+android_prebuilt_aar(
+  name = 'cardview-v7',
+  aar = 'cardview-v7-21.0.3.aar',
+  visibility = [ 'PUBLIC' ],
+)

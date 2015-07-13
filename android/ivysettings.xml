@@ -1,8 +1,18 @@
 <ivysettings>
+    <properties file="${ivy.settings.dir}/local.properties" />
+    <property name="m2-pattern" value="m2repository/[organisation]/[module]/[revision]/[module]-[revision](-[classifier]).[ext]" override="false" />
     <settings defaultResolver="chain"/>
     <resolvers>
         <chain name="chain">
             <ibiblio name="central" m2compatible="true"/>
+            <filesystem name="sdk-android" m2compatible="true">
+              <artifact pattern="${sdk.dir}/extras/android/${m2-pattern}" />
+              <ivy pattern="${sdk.dir}/extras/android/${m2-pattern}" />
+            </filesystem>
+            <filesystem name="sdk-google" m2compatible="true">
+              <artifact pattern="${sdk.dir}/extras/google/${m2-pattern}" />
+              <ivy pattern="${sdk.dir}/extras/google/${m2-pattern}" />
+            </filesystem>
         </chain>
     </resolvers>
 </ivysettings>

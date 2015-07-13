@@ -1,0 +1,11 @@
+android_resource(
+  name = 'res',
+  res = 'res',
+  package = 'com.google.samples.apps.iosched',
+  visibility = [ 'PUBLIC' ],
+)
+
+project_config(
+  src_target = ':res',
+  src_roots = None,
+)

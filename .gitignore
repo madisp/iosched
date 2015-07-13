@@ -13,6 +13,8 @@ bin/
 gen/
 out/
 build/
+buck-out/
+.buckd/
 
 # Local configuration file (sdk path, etc)
 local.properties

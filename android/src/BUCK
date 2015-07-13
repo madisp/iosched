@@ -1,0 +1,25 @@
+android_library(
+  name = 'src',
+  srcs = glob(['**/*.java']),
+  visibility = [ 'PUBLIC' ],
+  deps = [
+    ':build-config',
+    '//res/iosched:res',
+    '//libs:all-jars',
+    '//libs:android-maps-utils',
+    '//libs:play-services',
+    '//libs:support-v4',
+    '//libs:support-v13',
+    '//libs:appcompat-v7',
+    '//libs:cardview-v7',
+  ],
+)
+
+android_build_config(
+  name = 'build-config',
+  package = 'com.google.samples.apps.iosched',
+)
+
+project_config(
+  src_target = ':src',
+)

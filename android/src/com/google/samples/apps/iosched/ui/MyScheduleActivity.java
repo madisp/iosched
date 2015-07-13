@@ -421,18 +421,17 @@ public class MyScheduleActivity extends BaseActivity implements MyScheduleFragme
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_search:
-                /* [ANALYTICS:EVENT]
-                 * TRIGGER:   Click the search button on the Schedule screen.
-                 * CATEGORY:  'Schedule'
-                 * ACTION:    'launchsearch'
-                 * LABEL:     (none)
-                 * [/ANALYTICS]
-                 */
-                AnalyticsManager.sendEvent(SCREEN_LABEL, "launchsearch", "");
-                startActivity(new Intent(this, SearchActivity.class));
-                return true;
+        if (item.getItemId() == R.id.menu_search) {
+            /* [ANALYTICS:EVENT]
+             * TRIGGER:   Click the search button on the Schedule screen.
+             * CATEGORY:  'Schedule'
+             * ACTION:    'launchsearch'
+             * LABEL:     (none)
+             * [/ANALYTICS]
+             */
+            AnalyticsManager.sendEvent(SCREEN_LABEL, "launchsearch", "");
+            startActivity(new Intent(this, SearchActivity.class));
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

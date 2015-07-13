@@ -1092,39 +1092,39 @@ public class SessionDetailActivity extends BaseActivity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         SessionsHelper helper = new SessionsHelper(this);
-        switch (item.getItemId()) {
-            case R.id.menu_map_room:
+        final int id = item.getItemId();
+        if (id == R.id.menu_map_room) {
+            /* [ANALYTICS:EVENT]
+             * TRIGGER:   Click on the Map action on the Session Details page.
+             * CATEGORY:  'Session'
+             * ACTION:    'Map'
+             * LABEL:     session title/subtitle
+             * [/ANALYTICS]
+             */
+            AnalyticsManager.sendEvent("Session", "Map", mTitleString, 0L);
+            helper.startMapActivity(mRoomId);
+            return true;
+        }
+        else if (id == R.id.menu_share) {
+            // On ICS+ devices, we normally won't reach this as ShareActionProvider will handle
+            // sharing.
+            helper.shareSession(this, R.string.share_template, mTitleString,
+                    mHashTag, mUrl);
+            return true;
+        }
+        else if (id == R.id.menu_social_stream) {
+            if (!TextUtils.isEmpty(mHashTag)) {
                 /* [ANALYTICS:EVENT]
-                 * TRIGGER:   Click on the Map action on the Session Details page.
+                 * TRIGGER:   Click on the Social Stream action on the Session Details page.
                  * CATEGORY:  'Session'
-                 * ACTION:    'Map'
+                 * ACTION:    'Stream'
                  * LABEL:     session title/subtitle
                  * [/ANALYTICS]
                  */
-                AnalyticsManager.sendEvent("Session", "Map", mTitleString, 0L);
-                helper.startMapActivity(mRoomId);
-                return true;
-
-            case R.id.menu_share:
-                // On ICS+ devices, we normally won't reach this as ShareActionProvider will handle
-                // sharing.
-                helper.shareSession(this, R.string.share_template, mTitleString,
-                        mHashTag, mUrl);
-                return true;
-
-            case R.id.menu_social_stream:
-                if (!TextUtils.isEmpty(mHashTag)) {
-                    /* [ANALYTICS:EVENT]
-                     * TRIGGER:   Click on the Social Stream action on the Session Details page.
-                     * CATEGORY:  'Session'
-                     * ACTION:    'Stream'
-                     * LABEL:     session title/subtitle
-                     * [/ANALYTICS]
-                     */
-                    AnalyticsManager.sendEvent("Session", "Stream", mTitleString, 0L);
-                    UIUtils.showHashtagStream(this, mHashTag);
-                }
-                return true;
+                AnalyticsManager.sendEvent("Session", "Stream", mTitleString, 0L);
+                UIUtils.showHashtagStream(this, mHashTag);
+            }
+            return true;
         }
         return false;
     }

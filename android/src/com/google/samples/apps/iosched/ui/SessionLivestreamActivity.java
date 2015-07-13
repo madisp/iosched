@@ -264,37 +264,36 @@ public class SessionLivestreamActivity extends BaseActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_captions:
-                if (mIsFullscreen) {
-                    if (mFullscreenCaptions.getVisibility() == View.GONE) {
-                        mFullscreenCaptions.setVisibility(View.VISIBLE);
-                        SessionCaptionsFragment captionsFragment;
-                        captionsFragment = (SessionCaptionsFragment)
-                                getFragmentManager().findFragmentByTag(TAG_CAPTIONS);
-                        if (captionsFragment == null) {
-                            captionsFragment = new SessionCaptionsFragment();
-                            captionsFragment.setDarkTheme(true);
-                            FragmentTransaction ft = getFragmentManager().beginTransaction();
-                            ft.add(R.id.fullscreen_captions, captionsFragment, TAG_CAPTIONS);
-                            ft.commit();
-                        }
-                        captionsFragment.updateViews(mCaptionsUrl);
-                        return true;
+        final int id = item.getItemId();
+        if (id == R.id.menu_captions) {
+            if (mIsFullscreen) {
+                if (mFullscreenCaptions.getVisibility() == View.GONE) {
+                    mFullscreenCaptions.setVisibility(View.VISIBLE);
+                    SessionCaptionsFragment captionsFragment;
+                    captionsFragment = (SessionCaptionsFragment)
+                            getFragmentManager().findFragmentByTag(TAG_CAPTIONS);
+                    if (captionsFragment == null) {
+                        captionsFragment = new SessionCaptionsFragment();
+                        captionsFragment.setDarkTheme(true);
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.add(R.id.fullscreen_captions, captionsFragment, TAG_CAPTIONS);
+                        ft.commit();
                     }
-                }
-                mFullscreenCaptions.setVisibility(View.GONE);
-                break;
-            case R.id.menu_share:
-                if (mSessionShareData != null) {
-                    new SessionsHelper(this).shareSession(this,
-                            R.string.share_livestream_template,
-                            mSessionShareData.title,
-                            mSessionShareData.hashtag,
-                            mSessionShareData.sessionUrl);
+                    captionsFragment.updateViews(mCaptionsUrl);
                     return true;
                 }
-                break;
+            }
+            mFullscreenCaptions.setVisibility(View.GONE);
+        }
+        else if (id == R.id.menu_share) {
+            if (mSessionShareData != null) {
+                new SessionsHelper(this).shareSession(this,
+                        R.string.share_livestream_template,
+                        mSessionShareData.title,
+                        mSessionShareData.hashtag,
+                        mSessionShareData.sessionUrl);
+                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -765,7 +764,7 @@ public class SessionLivestreamActivity extends BaseActivity implements
     }
 
     private int getActionBarHeightPx() {
-        int[] attrs = new int[] { R.attr.actionBarSize };
+        int[] attrs = new int[] { android.support.v7.appcompat.R.attr.actionBarSize };
         return (int) getTheme().obtainStyledAttributes(attrs).getDimension(0, 0f);
     }
 

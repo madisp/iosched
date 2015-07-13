@@ -1,0 +1,19 @@
+android_binary(
+  name = 'app',
+  manifest = 'AndroidManifest.xml',
+  keystore = ':debug_keystore',
+  deps = [
+    '//src:src',
+    '//res/iosched:res'
+  ],
+)
+
+keystore(
+  name = 'debug_keystore',
+  store = 'debug.keystore',
+  properties = 'debug.keystore.properties',
+)
+
+project_config(
+  src_target = ':app'
+)

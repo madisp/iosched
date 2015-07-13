@@ -278,11 +278,8 @@ public class PeopleIveMetFragment extends Fragment
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.retry: {
-                retry();
-                break;
-            }
+        if (v.getId() == R.id.retry) {
+            retry();
         }
     }
 
@@ -480,55 +477,51 @@ public class PeopleIveMetFragment extends Fragment
 
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.container: {
-                    String personId = (String) v.getTag(R.id.tag_person_id);
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(getPlusUrl(personId)));
-                    UIUtils.preferPackageForIntent(mContext, intent,
-                            UIUtils.GOOGLE_PLUS_PACKAGE_NAME);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                    mContext.startActivity(intent);
-                    break;
-                }
-                case R.id.actions: {
-                    mCurrentMenuPersonId = (String) v.getTag(R.id.tag_person_id);
-                    mCurrentMenuPersonName = (String) v.getTag(R.id.tag_person_name);
-                    mCurrentMenuPersonNote = (String) v.getTag(R.id.tag_person_note);
-                    PopupMenu popup = new PopupMenu(mContext, v);
-                    popup.getMenuInflater().inflate(R.menu.people_ive_met, popup.getMenu());
-                    popup.setOnMenuItemClickListener(this);
-                    popup.show();
-                    break;
-                }
+            final int id = v.getId();
+            if (id == R.id.container) {
+                String personId = (String) v.getTag(R.id.tag_person_id);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(getPlusUrl(personId)));
+                UIUtils.preferPackageForIntent(mContext, intent,
+                        UIUtils.GOOGLE_PLUS_PACKAGE_NAME);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                mContext.startActivity(intent);
+            }
+            else if (id == R.id.actions) {
+                mCurrentMenuPersonId = (String) v.getTag(R.id.tag_person_id);
+                mCurrentMenuPersonName = (String) v.getTag(R.id.tag_person_name);
+                mCurrentMenuPersonNote = (String) v.getTag(R.id.tag_person_note);
+                PopupMenu popup = new PopupMenu(mContext, v);
+                popup.getMenuInflater().inflate(R.menu.people_ive_met, popup.getMenu());
+                popup.setOnMenuItemClickListener(this);
+                popup.show();
             }
         }
 
         @Override
         public boolean onMenuItemClick(MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.note: {
-                    EditNoteFragment.newInstance(mCurrentMenuPersonId, mCurrentMenuPersonName,
-                            mCurrentMenuPersonNote)
-                            .show(mFragmentManager, EditNoteFragment.TAG);
-                    return true;
-                }
-                case R.id.delete: {
-                    new AlertDialog.Builder(mContext)
-                            .setMessage(R.string.people_ive_met_delete_confirmation)
-                            .setPositiveButton(R.string.people_ive_met_delete,
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            new DeletePersonTask(mContext, mCurrentMenuPersonId)
-                                                    .execute();
-                                        }
+            final int id = item.getItemId();
+            if (id == R.id.note) {
+                EditNoteFragment.newInstance(mCurrentMenuPersonId, mCurrentMenuPersonName,
+                        mCurrentMenuPersonNote)
+                        .show(mFragmentManager, EditNoteFragment.TAG);
+                return true;
+            }
+            else if (id == R.id.delete) {
+                new AlertDialog.Builder(mContext)
+                        .setMessage(R.string.people_ive_met_delete_confirmation)
+                        .setPositiveButton(R.string.people_ive_met_delete,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        new DeletePersonTask(mContext, mCurrentMenuPersonId)
+                                                .execute();
                                     }
-                            )
-                            .setNegativeButton(android.R.string.cancel, null)
-                            .show();
-                    return true;
-                }
+                                }
+                        )
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .show();
+                return true;
             }
             return false;
         }
@@ -634,11 +627,8 @@ public class PeopleIveMetFragment extends Fragment
 
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.ok: {
-                    dismiss();
-                    break;
-                }
+            if (v.getId() == R.id.ok) {
+                dismiss();
             }
         }
 

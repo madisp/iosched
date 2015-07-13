@@ -18,16 +18,34 @@
     <dependency org="com.github.japgolly.android" name="svg-android" rev="2.0.6">
       <artifact name="svg-android" ext="jar" />
     </dependency>
-    <!-- commented out since it is an aar -->
-    <!-- dependency org="com.google.maps.android" name="android-maps-utils" rev="0.3+">
-      <artifact name="android-maps-utils" ext="jar" />
-      <exclude org="com.google.android.gms" />
-    </dependency -->
     <dependency org="com.google.http-client" name="google-http-client-gson" rev="1.+">
       <artifact name="google-http-client-gson" ext="jar" />
     </dependency>
     <dependency org="com.google.apis" name="google-api-services-drive" rev="+">
       <artifact name="google-api-services-drive" ext="jar" />
+    </dependency>
+
+    <!-- aar's from sdk repo -->
+    <dependency org="com.android.support" name="support-v13" rev="21.0.3">
+      <artifact name="support-v13" ext="aar" />
+    </dependency>
+    <dependency org="com.android.support" name="support-v4" rev="21.0.3">
+      <artifact name="support-v4" ext="aar" />
+    </dependency>
+    <dependency org="com.android.support" name="appcompat-v7" rev="21.0.3">
+      <artifact name="appcompat-v7" ext="aar" />
+    </dependency>
+    <dependency org="com.android.support" name="cardview-v7" rev="21.0.3">
+      <artifact name="cardview-v7" ext="aar" />
+    </dependency>
+    <dependency org="com.google.android.gms" name="play-services" rev="6.1.71">
+      <artifact name="play-services" ext="aar" />
+    </dependency>
+
+    <!-- aar's from central -->
+    <dependency org="com.google.maps.android" name="android-maps-utils" rev="0.3+">
+      <artifact name="android-maps-utils" ext="aar" />
+      <exclude org="com.google.android.gms" />
     </dependency>
 
     <exclude org="junit" module="junit" />
